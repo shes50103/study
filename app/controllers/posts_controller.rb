@@ -4,6 +4,13 @@ class PostsController < ApplicationController
   # GET /posts or /posts.json
   def index
     @posts = Post.all
+
+    # byebug
+    # respond_to do |format|
+    #   format.html { render :index }
+    #   format.json { render json: @posts.where(id: [1,2]) }
+    #   format.pdf { render pdf: :index }
+    # end
   end
 
   # GET /posts/1 or /posts/1.json
