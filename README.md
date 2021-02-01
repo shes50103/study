@@ -1,24 +1,81 @@
-# README
+# 2/1 讀書會 Rails render
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+分享人: 詹昇
 
-Things you may want to cover:
+- 找 gem source code 方式
 
-* Ruby version
+```
+gem env
+```
 
-* System dependencies
+```
+bundle open
+```
 
-* Configuration
+- 找方法定義在哪邊
 
-* Database creation
+```ruby
+method(:render).source_location
+```
 
-* Database initialization
+- 恢復 gem
 
-* How to run the test suite
+```ruby
+gem pristine actionpack
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+- 找方法繼承鍊
 
-* Deployment instructions
+```ruby
+self.class.ancestors
+```
 
-* ...
+
+- Ruby includes 示範
+
+
+```ruby
+module A1
+  def run
+    puts 'A1 run'
+    super
+  end
+end
+
+module A2
+  def run
+    puts 'A2 run'
+    super
+  end
+end
+
+module A3
+  def run
+    puts 'A3 run'
+    super
+  end
+end
+
+
+class Bob
+  include A1
+  include A2
+  include A3
+
+  def run
+    puts 'bob run'
+    super
+  end
+end
+
+Bob.new.run
+# p Bob.ancestors
+
+```
+
+參考資料
+http://owningrails.com/
+
+https://pragprog.com/titles/jvrails2/crafting-rails-4-applications/
+
+![](https://i.imgur.com/1cpdUJv.jpg)
